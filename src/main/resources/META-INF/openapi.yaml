@@ -1,0 +1,101 @@
+---
+openapi: 3.1.0
+info:
+  title: tech-test API Documentation by HLEON
+  description: Esta documentacion fue realizada para una demostracion del uso de Swagger
+  version: "1.0"
+paths:
+  /api/v1/test:
+    post:
+      parameters:
+        - name: param1
+          in: query
+          description: Primer parametro
+          example: 'Hola'
+          schema:
+            type: string
+        - name: param2
+          description: Segundo parametro
+          in: query
+          example: 'esta'
+          schema:
+            type: string
+        - name: param3
+          in: query
+          description: Tercer parametro
+          example: 'es'
+          schema:
+            type: string
+        - name: param4
+          in: query
+          description: Cuarto parametro
+          example: 'una'
+          schema:
+            type: string
+        - name: param5
+          in: query
+          description: Quinto parametro
+          example: 'prueba'
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Campos incorrectos
+      summary: Realizar concatenacion de parametros
+      tags:
+        - Part A Controller
+  /api/v2/move:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMoves'
+      summary: Obtiene los movimientos
+      description: El servicio es no bloqueante y obtiene los movimientos
+      tags:
+        - Part B Controller
+
+components:
+  schemas:
+    ResponseMoves:
+      description: Objeto para responder
+      type: object
+      properties:
+        body:
+          type: object
+          properties:
+            count:
+              description: counting
+              example: 937
+              type: string
+            next:
+              description: next url
+              example: https://pokeapi.co/api/v2/move?offset=20&limit=20
+              type: string
+            results:
+              properties:
+                name:
+                    desscription: name of result
+                    type: string
+                    example: pound
+                url:
+                    description: url provisioned
+                    type: string
+                    example: https://pokeapi.co/api/v2/move/1/
+        code:
+          description: codigo de validacion
+          type: string
+          example: '000'
+        httpCode:
+          description: codigo de estado http
+          type: number
+          example: 200
+        message:
+          description: Mensaje de informacion
+          type: string
+          example: Operacion correcta

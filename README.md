@@ -1,62 +1,69 @@
-# tech-test
+# Test Tech HLEON
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+##  Requisitos Previos
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Antes de compilar o ejecutar el proyecto, asegúrate de tener instalado:
 
-## Running the application in dev mode
+- **Maven**: versión **3.9.9**
+- **Java**: versión **22 o inferior**
+- Un sistema operativo compatible con scripts `.sh` (Linux, MACOS, o WSL en Windows)
 
-You can run your application in dev mode that enables live coding using:
+> ⚠️ Java 23 o versiones superiores no están garantizadas para este proyecto.
 
-```shell script
-./mvnw quarkus:dev
+---
+
+## 🛠️ Compilación
+
+1. Abre una terminal y **sitúate en la carpeta raíz del proyecto**:
+
+   ```bash
+   cd /ruta/a/tu/proyecto
+   ```
+
+2. Ejecuta el siguiente comando para compilar y construir el proyecto:
+
+   ```bash
+   ./mvnw clean install
+   ```
+
+   Este comando descargará las dependencias necesarias, compilará el código y ejecutará pruebas automáticas si están definidas.
+
+---
+
+## Ejecución
+
+Una vez que el proyecto se haya compilado correctamente, ejecuta el script de inicio:
+
+```bash
+./start.sh
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+---
 
-## Packaging and running the application
+## Logs
 
-The application can be packaged using:
+Todos los logs generados por el servicio se almacenarán automáticamente en la carpeta:
 
-```shell script
-./mvnw package
+```
+logs/
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+Asegúrate de que esta carpeta exista y tenga permisos de escritura. Si no existe, el script o el mismo servicio debería crearla al iniciar.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+---
 
-If you want to build an _über-jar_, execute the following command:
+##  Permisos (si es necesario)
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
+Si tienes problemas al ejecutar los scripts, verifica los permisos:
+
+```bash
+chmod +x mvnw start.sh
 ```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+---
 
-## Creating a native executable
+##  Notas
 
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/tech-test-1.0-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Provided Code
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+- El proyecto se compila con perfil prod, pero al momento de correr puedes cambiar el perfil.
+- Swagger: http://localhost:15050/swagger-ui
+---
